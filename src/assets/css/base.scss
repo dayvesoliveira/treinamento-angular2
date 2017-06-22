@@ -1,0 +1,32 @@
+
+html, 
+body {
+    overflow-x: $base-hidden;
+}
+
+body {
+    background-color: $base-color-white;
+    text-rendering: optimizeLegibility;
+    font-family: $base-font-name;
+    font-size: $base-font-size;
+    color: $base-font-color;
+}
+
+@media only screen and (max-width: $break-middle) {
+	body {
+		padding-top: 40px
+	}
+}
+
+@media only screen and (max-width: $break-middle) {
+	body.scroll {
+		padding-top: 0
+	}
+}
+
+.module-title {
+    color: $base-color-module-title;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 100;
+}

@@ -1,0 +1,37 @@
+$var-url-font: '#{$var-assets}/fonts/fontawesome-webfont';
+$var-version: 'v=4.7.0';
+$ico-fonte: '.ico';
+
+@font-face {
+  
+  font-family: 'FontAwesome';
+
+  src: url('#{$var-url-font}.eot?#{$var-version}');
+  src: url('#{$var-url-font}.eot?#iefix&#{$var-version}') format('embedded-opentype'), 
+       url('#{$var-url-font}.woff2?#{$var-version}') format('woff2'), 
+       url('#{$var-url-font}.woff?#{$var-version}') format('woff'), 
+       url('#{$var-url-font}.ttf?#{$var-version}') format('truetype'), 
+       url('#{$var-url-font}.svg?#{$var-version}#fontawesomeregular') format('svg');
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+#{$ico-fonte} {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin: 10px 12px;
+    -moz-osx-font-smoothing: grayscale;   
+}
+#{$ico-fonte}-bars:before {
+    content: "\f0c9";
+    color: #555555;
+}
+#{$ico-fonte}-chevron-down:before { 
+    content: "\f078";
+}

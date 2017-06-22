@@ -1,0 +1,38 @@
+<div id="header" role="baner" class="group">
+    
+    <!-- TOOLBAR -->
+    
+    <div id="header-inner" class="group">
+        <div id="logo">
+            <a href="/">
+                <img alt="dribble" src="assets/images/logo-bw.gif"/>
+            </a>
+        </div>
+    </div>
+
+    <!-- MENU NAVEGACAO -->
+
+    <div>
+        <a id="toggle-nav" href="#" class="nav" (click)="openMenu()">
+            <span class="ico ico-bars" aria-hidden="true"></span>
+        </a>
+        <ul id="nav-menu">
+            <li id="search-input">
+                <form id="search">
+                <input class="search-text" 
+                    placeholder="Search"
+                    ng-model="searchText" />
+                </form>
+            </li>
+            <li id="shots-li">
+                <a class="has-sub">Shots</a>
+                <ul class="tabs">
+                    <li *ngFor="let item of menuItens">
+                        <a href="{{item.url}}">{{item.name}}</a>
+                    </li>
+                </ul>
+            </li>
+          </ul>
+    </div>
+
+</div>

@@ -1,0 +1,181 @@
+
+/*@import 'variables';*/
+#wrap {
+    position: relative;
+    background: #f4f4f4;
+    height: 100vh;
+}
+
+div.#{$var-toobar-tabs} {
+
+	width: 100%;
+	min-height: 50px;
+	border-bottom: 1px solid #e5e5e5;
+    background: rgba(255,255,255,0.6);
+
+    h1.places {
+        line-height: 50px;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    ul.#{$var-toobar-tabs}-links {
+        padding: 0 30px;
+        text-align: center;
+
+        > li {
+            text-align: left;
+            display: inline-block;
+            margin: 0 20px 0 0;
+            font-size: 14px;
+            line-height: 1;
+            
+            &.separate {
+                margin: 5px 0 0 0;
+                padding: 5px 0 0 0;
+                border-top: 1px solid #eee;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+            
+            > a {
+                line-height: 50px;
+                position: relative;
+                font-weight: 500;
+                color: #444;
+                text-decoration: none;
+
+                &:hover {
+                    opacity: .75;
+                }
+            }
+
+            span.empty {
+                line-height: 50px;
+            }
+
+            ul {
+                display: none;
+                position: absolute;
+                width: 200px;
+                margin: -5px 0 0 -15px;
+                padding: 6px 0 10px 0;
+                font-size: 13px;
+                background: #fbfbfb;
+                border-radius: 4px;
+                border-bottom-right-radius: 4px;
+                box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+                li {
+                    a {
+                        display: block;
+                        height: auto;
+                        padding: 5px 15px;
+                        text-decoration: none;
+                        color: $base-font-color;
+                        &:hover{
+                            color: #444;
+                            background-color: #eee;
+                            opacity: 1
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ico-arrow-down {
+    margin: 0px 1px;
+    color: #888;
+    font-size: 12px;
+}
+
+@media only screen and (min-width: $break-x-small) {
+    div.#{$var-toobar-tabs} {
+        ul.#{$var-toobar-tabs}-links {
+            > li {
+                &:hover {
+                    ul {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $break-x-small) {
+	
+    div.#{$var-toobar-tabs} {
+
+        min-height: 0;
+
+        ul.#{$var-toobar-tabs}-links {
+            padding: 0 15px;
+
+            > li {
+                display: inline-block;
+                margin: 0 20px 0 0;
+                font-size: 14px;
+                line-height: 1;
+                
+                &:last-child {
+                    margin-right: 0;
+                    border-right: none;
+                }
+            }
+        }  
+    }
+}
+
+@media only screen and (max-width: $break-x-small) {
+
+	div.#{$var-toobar-tabs}{
+
+        ul.#{$var-toobar-tabs}-links {
+            > li {
+                float: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+                font-size: 12px;
+                line-height: 1;
+                border-right: none;
+
+                > a {
+                    line-height: 36px;
+                    &:hover {
+                        opacity: .75;
+                        ul {
+                            display: block;
+                        }
+                    }
+                }
+
+                span.empty {
+                    line-height: 36px;
+                }
+
+                &.more {
+                    margin-right: 0;
+                    > a {
+                        padding-right: 23px;
+                    }
+                    > a:hover {
+                        opacity: 1
+                    }
+                }
+
+                &.active {
+                    > a {
+                        position: relative;
+                        font-weight: 500;
+                        color: #444
+                    }
+                }
+            }
+        }
+    }
+}
