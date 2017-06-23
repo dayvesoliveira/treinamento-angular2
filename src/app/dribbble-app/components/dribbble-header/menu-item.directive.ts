@@ -1,4 +1,14 @@
-import { Directive } from "@angular/core";
+import { Directive, ElementRef, Input } from "@angular/core";
 
-@Directive({ selector: 'li' })
-export class MenuItemDirective {}
+@Directive({ selector: 'menu-item' })
+export class MenuItemDirective {
+
+    @Input('menu-item') isDisplay:boolean = false;
+
+    constructor(private el: ElementRef) {}
+
+    ngOnInit() {
+        this.el.nativeElement.style.lineHeight = this.isDisplay ? '10px':'1';
+        this.el.nativeElement.style.float =   this.isDisplay ? 'left':'_';
+    }
+}

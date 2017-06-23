@@ -8,6 +8,7 @@ import { Component,
          ContentChildren, 
          QueryList } from '@angular/core';
 import { MenuItemDirective } from "./menu-item.directive";
+import { SearchInputDirective } from "./search-input.directive";
 
 @Component({
   selector:     'dribbble-header',
@@ -31,9 +32,8 @@ export class DribbbleHeaderComponent implements AfterViewInit  {
     @Output()
     abrirMenu = new EventEmitter<any>();
 
-    //@ContentChildren(MenuItemDirective) item: QueryList<MenuItemDirective>;
+    @ViewChildren(SearchInputDirective) searchItem: QueryList<SearchInputDirective>;
     @ViewChildren(MenuItemDirective) menuItemLi: QueryList<MenuItemDirective>;
-    @ViewChildren(".search-text") searchItem: QueryList<any>;
 
     openMenu() {
         this.abrirMenu.emit();
@@ -43,12 +43,36 @@ export class DribbbleHeaderComponent implements AfterViewInit  {
     }
 
     ngAfterViewInit() {
-        console.log(this.menuItemLi[0]);
+        console.log(this.menuItemLi);
         console.log(this.searchItem);
     }
 
     updateStyleMenuItem() {
-        /*var input = $document[0].getElementById('search-input');
+        /*
+        @Input() isDisplay:boolean = false;
+        constructor(private el: ElementRef) {}
+        ngOnInit() { this.el.nativeElement.style }
+        search-input: {
+            isDisplay:boolean;
+            style: {'display': vis ? 'block':'',
+                        'position': vis ? 'relative':'absolute', 
+                        'float': vis ? 'left' : 'right'
+                    }
+        }
+
+        input-parent: {
+            isDisplay:boolean;
+            style: { 'background': isDisplay ? '#2f2f2f':'transparent' }
+        }
+
+        menu-item {
+            isDisplay:boolean;
+            style: { 'line-height': vis ? '10px':'1',
+                     'float': vis ? 'left':'_'
+            }
+        }
+        
+        var input = $document[0].getElementById('search-input');
         if ( input ) {
             var li  = $document[0].querySelectorAll('#nav-menu > li');
             var $input = angular.element( input );
