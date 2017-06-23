@@ -1,11 +1,20 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, 
+         Input, 
+         Output, 
+         EventEmitter, 
+         AfterContentInit, 
+         AfterViewInit,
+         ViewChildren,
+         ContentChildren, 
+         QueryList } from '@angular/core';
+import { MenuItemDirective } from "./menu-item.directive";
 
 @Component({
-  selector: 'dribbble-header',
-  templateUrl: './dribbble-header.component.html',
-  styleUrls: ['./dribbble-header.component.css']
+  selector:     'dribbble-header',
+  templateUrl:  './dribbble-header.component.html',
+  styleUrls:   ['./dribbble-header.component.css']
 })
-export class DribbbleHeaderComponent {
+export class DribbbleHeaderComponent implements AfterViewInit  {
 
     @Input()
     menuItens:Array<any> = [];
@@ -22,13 +31,23 @@ export class DribbbleHeaderComponent {
     @Output()
     abrirMenu = new EventEmitter<any>();
 
+    //@ContentChildren(MenuItemDirective) item: QueryList<MenuItemDirective>;
+    @ViewChildren(MenuItemDirective) menuItemLi: QueryList<MenuItemDirective>;
+    @ViewChildren(".search-text") searchItem: QueryList<any>;
+
     openMenu() {
-      this.abrirMenu.emit();
+        this.abrirMenu.emit();
+        this.ishide = this.ishide ? false : true;
+        console.log(this.menuItemLi);
 
-      this.ishide = this.ishide ? false : true;
-      this.myVar  = this.ishide ? "":"nav-open";
-      this.classVisSearch = this.ishide ? "":"shots-li visibleSearch";
+    }
 
+    ngAfterViewInit() {
+        console.log(this.menuItemLi[0]);
+        console.log(this.searchItem);
+    }
+
+    updateStyleMenuItem() {
         /*var input = $document[0].getElementById('search-input');
         if ( input ) {
             var li  = $document[0].querySelectorAll('#nav-menu > li');
@@ -48,7 +67,6 @@ export class DribbbleHeaderComponent {
             $li.css({'line-height': vis ? '10px':'1',
                      'float': vis ? 'left':'_'});
         }*/
-
     }
 
 }

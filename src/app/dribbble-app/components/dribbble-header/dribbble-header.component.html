@@ -16,10 +16,10 @@
         <a id="toggle-nav" href="#" class="nav" (click)="openMenu()">
             <span class="ico ico-bars" aria-hidden="true"></span>
         </a>
-        <ul id="nav-menu">
-            <li id="search-input">
+        <ul id="nav-menu" [style.display]="ishide ? 'block':'' ">
+            <li id="search-input" [style.display]="ishide ? 'block':''">
                 <form id="search">
-                <input class="search-text" 
+                <input class="search-text" [style.display]="ishide ? 'block':''"
                     placeholder="Search"
                     ng-model="searchText" />
                 </form>
