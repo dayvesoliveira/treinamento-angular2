@@ -38,13 +38,12 @@ export class DribbbleHeaderComponent implements AfterViewInit  {
     openMenu() {
         this.abrirMenu.emit();
         this.ishide = this.ishide ? false : true;
-        console.log(this.menuItemLi);
-
+        console.log('openMenu', this.menuItemLi);
     }
 
     ngAfterViewInit() {
-        console.log(this.menuItemLi);
-        console.log(this.searchItem);
+        console.log('ngAfterViewInit', this.menuItemLi);
+        console.log('ngAfterViewInit', this.searchItem);
     }
 
     updateStyleMenuItem() {
