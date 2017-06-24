@@ -1,18 +1,15 @@
 import { Component, 
          Input, 
          Output, 
-         EventEmitter,  
-         AfterViewInit,
-         ViewChild,
-         ElementRef } from '@angular/core';
+         EventEmitter } from '@angular/core';
 
 @Component({
-    moduleId: module.id,
+    moduleId:     module.id,
     selector:     'dribbble-header',
     templateUrl:  './dribbble-header.component.html',
     styleUrls:   ['./dribbble-header.component.css']
 })
-export class DribbbleHeaderComponent implements AfterViewInit {
+export class DribbbleHeaderComponent {
 
     searchText:string;
 
@@ -33,15 +30,9 @@ export class DribbbleHeaderComponent implements AfterViewInit {
     styleSearchInput:Map<String,string> = new Map<String,string>();
     styleParentInput:Map<String,string> = new Map<String,string>();
 
-    @ViewChild('.search-text') input: ElementRef;
-
-    ngAfterViewInit() {
-        
-    }
-
     openMenu() {
-        this.abrirMenu.emit();
-        //console.log(this.input);
+        this.abrirMenu.emit(null);
+        
         this.ishide = this.ishide ? false : true;
         this.myVar  = this.ishide ? "":"nav-open";
         this.classVisSearch = ( this.ishide ? "":"shots-li visibleSearch" );
@@ -53,8 +44,7 @@ export class DribbbleHeaderComponent implements AfterViewInit {
     }
 
     setStyleMenuItemInput(){
-        this.currentStyles = new Map<String,string>(
-        [
+        this.currentStyles = new Map<String,string>([
             ['line-height', !this.ishide ? '10px':'1'],
             ['float', !this.ishide ? 'left':'_'],
             ['background-color', !this.ishide ? '#2f2f2f':'transparent'],
@@ -65,9 +55,11 @@ export class DribbbleHeaderComponent implements AfterViewInit {
     }
 
     setStyleMenuItem() {
-        this.currentStyles1.set('line-height', !this.ishide ? '10px':'1');
-        this.currentStyles1.set('float', !this.ishide ? 'left':'_');
-        this.currentStyles1.set('background-color', !this.ishide ? '#2f2f2f':'transparent');
+        this.currentStyles1 = new Map<String,string>([
+            ['line-height', !this.ishide ? '10px':'1'],
+            ['float', !this.ishide ? 'left':'_'],
+            ['background-color', !this.ishide ? '#2f2f2f':'transparent']
+        ]);
     }
 
     setStyleSearchInput() {
