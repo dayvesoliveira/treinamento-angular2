@@ -6,15 +6,19 @@ export class UtilDom {
 
     }
 
-    css(style:Object): void {
-        if (style != null) {
-            for (var name in style) {
-                if (style.hasOwnProperty(name)) {
-                    console.log("this is fog (" + name + ") for sure. Value: " + style[name]);
+    css(styles: Map<String, String>): void {
+        if (styles != null) {
+            styles.forEach((i, name)=>{
+                this.el.nativeElement.style[ name ] = styles[ name ];
+            });
+
+            for (var name in styles) {
+                if (styles.hasOwnProperty(name)) {
+                    console.log("this is fog (" + name + ") for sure. Value: " + styles[name]);
                 }
-                if ( style[ name ] != null ) {
+                if ( styles[ name ] != null ) {
                     //console.log("this is fog (" + name + ") for sure. Value: " + style[name]);
-                    this.el.nativeElement.style[ name ] = style[ name ];
+                    this.el.nativeElement.style[ name ] = styles[ name ];
                 }
             }
         }

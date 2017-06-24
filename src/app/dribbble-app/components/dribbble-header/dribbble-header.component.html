@@ -16,15 +16,19 @@
         <a id="toggle-nav" href="#" class="nav" (click)="openMenu()">
             <span class="ico ico-bars" aria-hidden="true"></span>
         </a>
-        <ul id="nav-menu" [style.display]="ishide ? 'block':'' ">
-            <li id="search-input" menu-item="ishide"  [style.display]="ishide ? 'block':''">
-                <form id="search">
-                <input class="search-text" [style.display]="ishide ? 'block':''"
-                    placeholder="Search"
-                    ng-model="searchText" />
+        <ul id="nav-menu" [ngClass]="myVar">
+
+            <li id="search-input" [ngClass]="classVisSearch"
+                [ngStyle]="currentStyles">
+                <form id="search" [ngStyle]="styleParentInput">
+                    <input class="search-text" 
+                        [ngStyle]="styleSearchInput"
+                        placeholder="Search" 
+                        #textoProcurado (keyup)="0" />
                 </form>
             </li>
-            <li id="shots-li" menu-item="ishide">
+
+            <li id="shots-li" [ngStyle]="currentStyles1">
                 <a class="has-sub">Shots</a>
                 <ul class="tabs">
                     <li *ngFor="let item of menuItens">
@@ -32,6 +36,7 @@
                     </li>
                 </ul>
             </li>
+
           </ul>
     </div>
 

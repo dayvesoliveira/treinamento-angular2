@@ -1,95 +1,83 @@
 import { Component, 
          Input, 
          Output, 
-         EventEmitter, 
-         AfterContentInit, 
+         EventEmitter,  
          AfterViewInit,
-         ViewChildren,
-         ContentChildren, 
-         QueryList } from '@angular/core';
-import { MenuItemDirective } from "./menu-item.directive";
-import { SearchInputDirective } from "./search-input.directive";
+         ViewChild,
+         ElementRef } from '@angular/core';
 
 @Component({
-  selector:     'dribbble-header',
-  templateUrl:  './dribbble-header.component.html',
-  styleUrls:   ['./dribbble-header.component.css']
+    moduleId: module.id,
+    selector:     'dribbble-header',
+    templateUrl:  './dribbble-header.component.html',
+    styleUrls:   ['./dribbble-header.component.css']
 })
-export class DribbbleHeaderComponent implements AfterViewInit  {
+export class DribbbleHeaderComponent implements AfterViewInit {
 
-    @Input()
-    menuItens:Array<any> = [];
+    searchText:string;
 
-    @Output()
-    ishide:boolean = false;
+    constructor(){
+        this.searchText = '';
+    }
 
-    @Output()
-    myVar:String = "";
+    menuItens:Array<any>    = [];
+    
+    ishide:boolean          = true;
+    myVar:String            = "";
+    classVisSearch:String   = "";
 
-    @Output()
-    classVisSearch:String = "";
-
-    @Output()
     abrirMenu = new EventEmitter<any>();
 
-    @ViewChildren(SearchInputDirective) searchItem: QueryList<SearchInputDirective>;
-    @ViewChildren(MenuItemDirective) menuItemLi: QueryList<MenuItemDirective>;
+    currentStyles:Map<String,string> = new Map<String,string>();
+    currentStyles1:Map<String,string> = new Map<String,string>();
+    styleSearchInput:Map<String,string> = new Map<String,string>();
+    styleParentInput:Map<String,string> = new Map<String,string>();
+
+    @ViewChild('.search-text') input: ElementRef;
+
+    ngAfterViewInit() {
+        
+    }
 
     openMenu() {
         this.abrirMenu.emit();
+        //console.log(this.input);
         this.ishide = this.ishide ? false : true;
-        console.log('openMenu', this.menuItemLi);
-    }
-
-    ngAfterViewInit() {
-        console.log('ngAfterViewInit', this.menuItemLi);
-        console.log('ngAfterViewInit', this.searchItem);
-    }
-
-    updateStyleMenuItem() {
-        /*
-        @Input() isDisplay:boolean = false;
-        constructor(private el: ElementRef) {}
-        ngOnInit() { this.el.nativeElement.style }
-        search-input: {
-            isDisplay:boolean;
-            style: {'display': vis ? 'block':'',
-                        'position': vis ? 'relative':'absolute', 
-                        'float': vis ? 'left' : 'right'
-                    }
-        }
-
-        input-parent: {
-            isDisplay:boolean;
-            style: { 'background': isDisplay ? '#2f2f2f':'transparent' }
-        }
-
-        menu-item {
-            isDisplay:boolean;
-            style: { 'line-height': vis ? '10px':'1',
-                     'float': vis ? 'left':'_'
-            }
-        }
+        this.myVar  = this.ishide ? "":"nav-open";
+        this.classVisSearch = ( this.ishide ? "":"shots-li visibleSearch" );
         
-        var input = $document[0].getElementById('search-input');
-        if ( input ) {
-            var li  = $document[0].querySelectorAll('#nav-menu > li');
-            var $input = angular.element( input );
+        this.setStyleMenuItemInput();
+        this.setStyleMenuItem();
+        this.setStyleSearchInput();
+        this.setStyleParentInput();
+    }
 
-            var display = $input.css('display'),
-                vis     = (display !== 'block') ? true : false;
+    setStyleMenuItemInput(){
+        this.currentStyles = new Map<String,string>(
+        [
+            ['line-height', !this.ishide ? '10px':'1'],
+            ['float', !this.ishide ? 'left':'_'],
+            ['background-color', !this.ishide ? '#2f2f2f':'transparent'],
+            ['position', !this.ishide ? 'relative':''],
+            ['margin', !this.ishide ?'0px 5px':''],
+            ['display', !this.ishide ?'block':'']
+        ]);
+    }
 
-            $input.css({'display': vis ? 'block':'',
-                        'position': vis ? 'relative':'absolute', 
-                        'float': vis ? 'left' : 'right'});
-            
-            var parent = angular.element( input.parentNode );
-            parent.css({'background': vis ? '#2f2f2f':'transparent'});
+    setStyleMenuItem() {
+        this.currentStyles1.set('line-height', !this.ishide ? '10px':'1');
+        this.currentStyles1.set('float', !this.ishide ? 'left':'_');
+        this.currentStyles1.set('background-color', !this.ishide ? '#2f2f2f':'transparent');
+    }
 
-            var $li = angular.element(li);
-            $li.css({'line-height': vis ? '10px':'1',
-                     'float': vis ? 'left':'_'});
-        }*/
+    setStyleSearchInput() {
+        this.styleSearchInput.set('display', this.ishide ? 'block':'');
+        this.styleSearchInput.set('position', !this.ishide ? 'relative':'');
+        this.styleSearchInput.set('float', !this.ishide ? 'left' : 'right');
+    }
+
+    setStyleParentInput() {
+        this.styleParentInput.set('background', !this.ishide ? '#2f2f2f':'transparent');
     }
 
 }

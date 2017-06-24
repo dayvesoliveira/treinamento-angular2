@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'dribbble-app',
@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   template: `
         <div class="dribbble-app">
             <dribbble-header></dribbble-header>
+            <dribbble-content></dribbble-content>
         </div>
         `
 })
