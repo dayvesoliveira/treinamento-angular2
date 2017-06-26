@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { DribbbleService } from '../services/dribbble.service';
 
-import { Shot } from '../core/dribbble-app';
+import { Shot, DribbbleImgComponent } from '../core/dribbble-app';
 
 @Component({
   moduleId:  module.id,
@@ -11,29 +11,28 @@ import { Shot } from '../core/dribbble-app';
                 <div [ngClass]="largeImages?'large-image': ''">
                     <dribbble-content>
                         <dribbble-screenshot *ngFor="let shot of shots">
-                            
-                            <screenshot-img [title]="shot.title" 
-                                [description]="shot.description"
-                                [image]="shot.images.normal"
-                                [imageSmall]="shot.images.teaser"
-                                [imageLarge]="shot.images.hidpi"
-                                [htmlUrl]="shot.html_url"
-                                [time]="shot.created_at"
-                                [id]="shot.id">
-                            </screenshot-img>
-
                         </dribbble-screenshot>
                     </dribbble-content>
                 </div>
             </div>
             `
-})
+})/*[title]="shot.title" <screenshot-img></screenshot-img>
+    [description]="shot.description"
+                                [image]="shot.images.normal"
+                                [imageSmall]="shot.images.teaser"
+                                [imageLarge]="shot.images.hidpi"
+                                [htmlUrl]="shot.html_url"
+                                [time]="shot.created_at"
+                                [id]="shot.id" */
 export class DribbbleAppComponent {
-    @Input()    largeImages: boolean = false;
-    shots:      Shot[];
-    service:    DribbbleService;
+    @Input()    
+    largeImages: boolean = false;
 
-    constructor( service: DribbbleService ){
+    shots:Shot[] = [];
+
+    service:DribbbleService;
+
+    constructor(service: DribbbleService){
         this.service = service;
         this.initialize();
     }
@@ -41,7 +40,7 @@ export class DribbbleAppComponent {
     initialize() {
         this.service.lista()
                     .subscribe(
-                        shots => this.shots = shots,
+                        shots =>this.shots = shots,
                         erro => console.log(erro)
                     );
     }

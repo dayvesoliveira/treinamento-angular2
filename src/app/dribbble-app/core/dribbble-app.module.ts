@@ -4,7 +4,7 @@ import { DribbbleAppComponent,
          DribbbleHeaderComponent, 
          DribbbleContentComponent,
          DribbbleScreenshotComponent,
-         DribbbleImgComponent,
+         /*DribbbleImgComponent,*/
          Shot,
          MenuItem 
         } from './dribbble-app';
@@ -12,14 +12,15 @@ import { DribbbleAppComponent,
 import { DribbbleService } from '../services/dribbble.service';
 
 @NgModule({
-    imports:[ CommonModule ],
-    declarations: [ 
+    imports: [ CommonModule ],
+    declarations: [
         DribbbleAppComponent,
         DribbbleHeaderComponent,
         DribbbleContentComponent,
-        DribbbleScreenshotComponent,
-        DribbbleService
+         /*DribbbleImgComponent,*/
+        DribbbleScreenshotComponent
     ],
-    exports:[ DribbbleAppComponent ]
+    exports: [ DribbbleAppComponent ],
+    providers: [ DribbbleService ]
 })
 export class DribbbleAppModule {}
