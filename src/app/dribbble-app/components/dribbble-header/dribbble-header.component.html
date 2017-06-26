@@ -31,8 +31,8 @@
             <li id="shots-li" [ngStyle]="currentStyles1">
                 <a class="has-sub">Shots</a>
                 <ul class="tabs">
-                    <li *ngFor="let item of menuItens">
-                        <a href="{{item.url}}">{{item.name}}</a>
+                    <li *ngFor="let menuItem of menuItens">
+                        <a href="{{menuItem.url}}">{{menuItem.name}}</a>
                     </li>
                 </ul>
             </li>

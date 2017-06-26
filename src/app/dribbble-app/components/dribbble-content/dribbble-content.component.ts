@@ -3,9 +3,9 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   moduleId:     module.id,
   selector:     'dribbble-content',
-  templateUrl:  './dribbble-content.component.html',
-  styleUrls:   ['./dribbble-content.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  template:    `<ol class="dribbbles group">
+                    <ng-content></ng-content>
+                </ol>`
 })
 export class DribbbleContentComponent implements OnInit {
 

@@ -3,21 +3,30 @@ import { Component,
          Output, 
          EventEmitter } from '@angular/core';
 
+import { MenuItem } from '../models/menuItem';
+
 @Component({
     moduleId:     module.id,
     selector:     'dribbble-header',
-    templateUrl:  './dribbble-header.component.html',
-    styleUrls:   ['./dribbble-header.component.css']
+    templateUrl:  './dribbble-header.component.html'
 })
 export class DribbbleHeaderComponent {
 
     searchText:string;
+    largeImages:boolean = false;
+    menuItens:Array<MenuItem> = [];
 
     constructor(){
         this.searchText = '';
+        this.menuItens = [
+            new MenuItem('/shots', 'Popular'),
+            new MenuItem('/shots?sort=recent', 'Recent'),
+            new MenuItem('/shots?list=debuts', 'Debuts'),
+            new MenuItem('/shots?list=teams', 'Teams'),
+            new MenuItem('/shots?list=playoffs', 'Playoffs')
+        ];
     }
 
-    menuItens:Array<any>    = [];
     
     ishide:boolean          = true;
     myVar:String            = "";
@@ -63,9 +72,11 @@ export class DribbbleHeaderComponent {
     }
 
     setStyleSearchInput() {
-        this.styleSearchInput.set('display', this.ishide ? 'block':'');
-        this.styleSearchInput.set('position', !this.ishide ? 'relative':'');
-        this.styleSearchInput.set('float', !this.ishide ? 'left' : 'right');
+        this.styleSearchInput  = new Map<String,string>([
+            ['display', this.ishide ? 'block':''],
+            ['position', !this.ishide ? 'relative':''],
+            ['float', !this.ishide ? 'left' : 'right']
+        ]);
     }
 
     setStyleParentInput() {
