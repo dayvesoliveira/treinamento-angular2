@@ -1,55 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
+    moduleId: module.id,
     selector: 'dribbble-img',
     template: `<div class="dribbble-img">
-                <a class="dribbble-link" [href]="shot.htmlUrl">
-                    <img  alt="{{shot.title}}" [src]="shot.image" 
-                          imageLarge="{{shot.imageLarge}}" 
-                          imageSmall="{{shot.imageSmall}}"
-                         />
+                <a class="dribbble-link" href="{{htmlUrl}}">
+                  <img alt="{{title}}" src="{{image}}">
                 </a>
-                <a class="dribbble-over" href="/{{id}}">
-                    <strong>{{shot.title}}</strong>
+                <a class="dribbble-over" href="/{{_id}}">
+                    <strong>{{title}}</strong>
                     <span class="comment"></span>
-                    <em class="timestamp">{{shot.time}}</em>
+                    <em class="timestamp">{{time}}</em>
                 </a>
-            </div>`
+            </div>`,
+    encapsulation: ViewEncapsulation.Emulated
 })
 export class DribbbleImgComponent {
-    
-    @Input()
-    shot: any;
-    
-   /* @Input() 
-    id:string = "";
-    
-    @Input() 
-    title:string = ""; 
-
-    @Input() 
-    description:string = "";
-
-    @Input() 
-    image:string = "";
-
-    @Input() 
-    imageSmall:string = "";
-
-    @Input() 
-    imageLarge:string = "";
-
-    @Input() 
-    htmlUrl:string = "";
-
-    @Input() 
-    time:string  = "";
-
-    @Input() 
-    images: any;
-
-    @Input() 
-    createdAt: string = "";*/
+        
+    @Input() _id: string = "";
+    @Input() title: string = ""; 
+    @Input() description: string = "";
+    @Input() image: string = "";
+    @Input() imageSmall: string = "";
+    @Input() imageLarge: string = "";
+    @Input() htmlUrl: string = "";
+    @Input() time: string  = "";
+    @Input() images: any;
+    @Input() createdAt: string = "";
 
 }

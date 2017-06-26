@@ -11,19 +11,24 @@ import { Shot, DribbbleImgComponent } from '../core/dribbble-app';
                 <div [ngClass]="largeImages?'large-image': ''">
                     <dribbble-content>
                         <dribbble-screenshot *ngFor="let shot of shots">
+
+                            <dribbble-img 
+                                _id="{{shot.id}}"
+                                title="{{shot.title}}"
+                                description="{{shot.description}}"
+                                image="{{shot.images.normal}}"
+                                imageSmall="{{shot.images.teaser}}"
+                                imageLarge="{{shot.images.hidpi}}"
+                                htmlUrl="{{shot.html_url}}"
+                                time="{{shot.created_at}}">
+                            </dribbble-img>
+
                         </dribbble-screenshot>
                     </dribbble-content>
                 </div>
             </div>
             `
-})/*[title]="shot.title" <screenshot-img></screenshot-img>
-    [description]="shot.description"
-                                [image]="shot.images.normal"
-                                [imageSmall]="shot.images.teaser"
-                                [imageLarge]="shot.images.hidpi"
-                                [htmlUrl]="shot.html_url"
-                                [time]="shot.created_at"
-                                [id]="shot.id" */
+})
 export class DribbbleAppComponent {
     @Input()    
     largeImages: boolean = false;
@@ -38,9 +43,10 @@ export class DribbbleAppComponent {
     }
 
     initialize() {
+        let that = this;
         this.service.lista()
                     .subscribe(
-                        shots =>this.shots = shots,
+                        shots =>that.shots = shots,//arrow function de callback
                         erro => console.log(erro)
                     );
     }

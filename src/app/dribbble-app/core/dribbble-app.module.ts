@@ -4,7 +4,7 @@ import { DribbbleAppComponent,
          DribbbleHeaderComponent, 
          DribbbleContentComponent,
          DribbbleScreenshotComponent,
-         /*DribbbleImgComponent,*/
+         DribbbleImgComponent,
          Shot,
          MenuItem 
         } from './dribbble-app';
@@ -17,7 +17,7 @@ import { DribbbleService } from '../services/dribbble.service';
         DribbbleAppComponent,
         DribbbleHeaderComponent,
         DribbbleContentComponent,
-         /*DribbbleImgComponent,*/
+        DribbbleImgComponent,
         DribbbleScreenshotComponent
     ],
     exports: [ DribbbleAppComponent ],
