@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
                 <a class="dribbble-over" href="/{{_id}}">
                     <strong>{{title}}</strong>
                     <span class="comment"></span>
-                    <em class="timestamp">{{time}}</em>
+                    <em class="timestamp">{{time | date:'dd/MM/yyyy'}}</em>
                 </a>
             </div>`,
     encapsulation: ViewEncapsulation.Emulated
