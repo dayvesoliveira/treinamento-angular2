@@ -1,4 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { DribbbleService } from '../services/dribbble.service';
 
 import { Shot, DribbbleImgComponent } from '../core/dribbble-app';
@@ -30,15 +32,25 @@ import { Shot, DribbbleImgComponent } from '../core/dribbble-app';
             `
 })
 export class DribbbleAppComponent {
-    @Input()    
-    largeImages: boolean = false;
 
-    shots:Shot[] = [];
+    shots:  Shot[] = [];
+
+    shot:   Shot;
+    
+    router: Router;
+
+    activatedRoute: ActivatedRoute;
 
     service:DribbbleService;
 
-    constructor(service: DribbbleService){
+    @Input()    
+    largeImages: boolean = false;
+
+    constructor(service: DribbbleService, router: Router, activatedRoute: ActivatedRoute){
         this.service = service;
+        this.router  = router;
+        this.activatedRoute = activatedRoute;
+        
         this.initialize();
     }
 
@@ -50,4 +62,20 @@ export class DribbbleAppComponent {
                         erro => console.log(erro)
                     );
     }
+
+    findById(){
+        let that = this;
+        this.activatedRoute.params.subscribe(params=> {
+            let id = params['id'];
+            if (id) {
+                this.service.findById( id )
+                            .subscribe(
+                                shot=>this.shot = shot,
+                                erro=>console.error(erro)
+                            );
+            }
+        });
+    }
+
+
 }
